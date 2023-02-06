@@ -7,6 +7,8 @@ const PORT = 8091;
 app.use(express.json());
 
 app.post('/api/students', StudentController.createNewStudent);
+app.get('/api/students/:studentName/final-grade', StudentController.updateStudent);
+app.get('/api/students', StudentController.getAllStudents);
 app.get('/api/students/:studentName', StudentController.getStudentByName);
 
 app.listen(PORT, () => {

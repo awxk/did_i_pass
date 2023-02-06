@@ -21,7 +21,9 @@ function calculateOverallAverage(assignmentAverage: number, finalExamAverage: nu
   return currentAverage;
 }
 
-function calculateCurrentAverage(weights: CourseGrades): number {
+function calculateCurrentAverage(
+  weights: CourseGrades = { assignmentWeights: [], finalExamWeight: 0 }
+): number {
   const { assignmentWeights, finalExamWeight } = weights;
   const assignmentAverage = calculateAssignmentAverage(assignmentWeights);
   const finalExamAverage = calculateFinalExamAverage(finalExamWeight);
