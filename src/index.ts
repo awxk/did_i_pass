@@ -1,16 +1,26 @@
 import express, { Express } from 'express';
-import StudentController from './controllers/StudentController';
+import {
+  getAllStudents,
+  createNewStudent,
+  getStudentByName,
+  getFinalExamScores,
+  calcFinalScore,
+  updateGrade,
+} from './controllers/StudentController';
+
+const PORT = 8080;
 
 const app: Express = express();
-const PORT = 8091;
-
 app.use(express.json());
 
-app.post('/api/students', StudentController.createNewStudent);
-app.get('/api/students/:studentName/final-grade', StudentController.updateStudent);
-app.get('/api/students', StudentController.getAllStudents);
-app.get('/api/students/:studentName', StudentController.getStudentByName);
+app.get('/', getAllStudents);
+app.post('/students', createNewStudent);
+
+app.get('/students/:studentName', getStudentByName);
+app.get('/students/:studentName/finalExam', getFinalExamScores);
+app.post('/students/:studentName/finalExam', calcFinalScore);
+app.post('/students/:studentName/grades/:assignmentName', updateGrade);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Listening on http://127.0.0.1:${PORT}`);
 });
