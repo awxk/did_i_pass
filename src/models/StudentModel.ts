@@ -37,12 +37,11 @@ function calculateFinalExamScore(
   finalExamWeight: number,
   targetScore: number
 ): number {
-  console.log(currentAverage, finalExamWeight, targetScore);
-  return (
-    Math.round(
-      ((targetScore - (currentAverage * (100 - finalExamWeight)) / 100) / (finalExamWeight / 100)) *
-        100
-    ) / 100
+  return parseFloat(
+    (
+      (targetScore - (currentAverage * (100 - finalExamWeight)) / 100) /
+      (finalExamWeight / 100)
+    ).toFixed(2)
   );
 }
 

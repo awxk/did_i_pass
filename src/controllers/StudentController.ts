@@ -70,7 +70,8 @@ function calcFinalScore(req: Request, res: Response): void {
   const { finalExamWeight } = weights;
   const finalExamGrade = req.body as AssignmentGrade;
 
-  const overallScore = currentAverage + (finalExamGrade.grade * finalExamWeight) / 100;
+  const overallScore =
+    (currentAverage * (100 - finalExamWeight) + finalExamGrade.grade * finalExamWeight) / 100;
   const letterGrade = getLetterGrade(overallScore);
 
   const finalScore: FinalGrade = {
